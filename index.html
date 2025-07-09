@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Lost in Space</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    .nebula {
+      position: absolute;
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(138,43,226,0.14) 0%, rgba(75,0,130,0.08) 40%, transparent 70%);
+      filter: blur(70px);
+      animation: drift 30s infinite alternate;
+      z-index: 1;
+    }
+    @keyframes drift {
+      0% { transform: translate(-60px, -20px) rotate(0deg);}
+      100% { transform: translate(60px, 20px) rotate(360deg);}
+    }
+    .nebula2 {
+      background: radial-gradient(ellipse at center, rgba(255,20,147,0.1) 0%, rgba(255,105,180,0.07) 40%, transparent 70%);
+      animation-duration: 36s;
+      animation-delay: -12s;
+    }
+    .musical-note {
+      position: absolute;
+      bottom: -40px;
+      color: #FFD700;
+      animation: floatUp 7s ease-in-out infinite;
+      opacity: 0;
+      text-shadow: 0 0 10px #FFD700aa;
+      z-index: 2;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%, 90% { opacity: 1; }
+      100% { transform: translateY(-80vh) rotate(360deg); opacity: 0; }
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, #FFD700, #FFA500 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 28px #ffd700aa;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { filter: brightness(1);}
+      50% { filter: brightness(1.2);}
+    }
+    .animate-float {
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform:translateY(0);}
+      50% { transform:translateY(-16px);}
+    }
+    /* Chatbot Styles */
+    .chatbot-body::-webkit-scrollbar { width: 6px; }
+    .chatbot-body::-webkit-scrollbar-track { background: #1e1e1e; }
+    .chatbot-body::-webkit-scrollbar-thumb { background-color: #3a3a3a; border-radius: 6px; }
+    @keyframes thinking {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.4); }
+        100% { transform: scale(1); }
+    }
+    .thinking-dot {
+        animation: thinking 1.2s infinite;
+    }
+    .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+    .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <!-- Starfield and Nebula -->
+  <div id="starfield" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></div>
+  <div id="musicfield" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></div>
+  <div class="nebula top-[-15%] left-[-10%]"></div>
+  <div class="nebula nebula2 bottom-[-20%] right-[-15%]"></div>
+
+  <!-- Main Content, Responsive Side-by-side -->
+  <main class="relative z-10 flex flex-col md:flex-row items-center justify-center min-h-screen px-4 py-10 max-w-6xl mx-auto">
+    <!-- LEFT: Image with glow -->
+    <div class="flex items-center justify-center w-full md:w-1/2 mb-12 md:mb-0">
+      <div class="relative inline-block w-full max-w-xs md:max-w-md">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div class="w-full h-full rounded-2xl bg-yellow-400 blur-2xl opacity-40"></div>
+        </div>
+        <img
+          src="https://i.imgur.com/abjAsFO.png"
+          alt="A majestic, guitar-shredding bird riding a mythical beast"
+          class="w-full h-auto rounded-2xl shadow-2xl bg-black/30 object-cover relative z-10 animate-float"
+          style="aspect-ratio: 3/4;"
+        >
+      </div>
+    </div>
+    <!-- RIGHT: Centered 404 and text -->
+    <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center">
+      <h1 class="gradient-text text-9xl md:text-12xl font-black mb-4 select-none">404</h1>
+      <h2 class="gradient-text text-4xl md:text-8lg font-black mb-4 select-none">Page Not Found</h2>
+      <br>
+      <p class="text-lg sm:text-xl text-gray-100 font-bold mb-2 max-w-xl">
+        Even this majestic, guitar-shredding bird couldn't find the page you're looking for.
+      </p>
+       <br>
+      <p class="text-gray-400 mb-8 max-w-lg italic">
+        It might have been moved, deleted, or perhaps it flew off to a land of myth and legend.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto justify-center">
+        <a href="https://www.ibanez.com/usa/" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold py-3 px-8 rounded-full shadow-lg shadow-yellow-500/30 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 text-center">
+          Return to Home
+        </a>
+        <button id="summon-bot-btn" class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-purple-500/30 hover:from-purple-700 hover:to-indigo-800 transition-all duration-300 transform hover:scale-105 text-center">
+          Talk to Ibanez AI Tech
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Chatbot Widget (hidden by default) -->
+    <div id="chatbot-widget" class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 w-[calc(100%-2rem)] max-w-sm h-[70vh] max-h-[500px] bg-[#1e1e1e] rounded-lg shadow-2xl flex flex-col transition-all duration-300 transform translate-y-8 opacity-0 pointer-events-none z-50">
+        <!-- Header -->
+        <header class="flex items-center justify-between p-4 border-b border-[#3a3a3a]">
+            <h3 class="font-bold text-lg">Ibanez AI Tech</h3>
+            <button id="close-bot-btn" class="text-2xl text-gray-400 hover:text-white">&times;</button>
+        </header>
+        <!-- Message Body -->
+        <div id="chatbot-body" class="chatbot-body flex-1 p-4 overflow-y-auto space-y-4">
+            <!-- Messages will be injected here -->
+        </div>
+        <!-- Input Footer -->
+        <footer class="p-4 border-t border-[#3a3a3a]">
+            <form id="chatbot-form" class="flex gap-2">
+                <input type="text" id="chatbot-input" placeholder="Ask for directions..." class="flex-1 bg-[#3a3a3a] text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600" autocomplete="off">
+                <button type="submit" id="chatbot-send-btn" class="bg-red-600 text-white font-bold px-6 py-2 rounded-md transition-colors hover:bg-red-700">Send</button>
+            </form>
+        </footer>
+    </div>
+
+  <!-- Scripts -->
+  <script>
+    // --- Starfield & Musical Notes Animations ---
+    const starfield = document.getElementById('starfield');
+    for (let i = 0; i < 160; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 3) + 's';
+      star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      starfield.appendChild(star);
+    }
+    const musicNotes = ["♪", "♫", "♬", "🎶"];
+    const musicfield = document.getElementById('musicfield');
+    for (let i = 0; i < 6; i++) {
+      const note = document.createElement('div');
+      note.className = 'musical-note';
+      note.textContent = musicNotes[Math.floor(Math.random() * musicNotes.length)];
+      if (Math.random() > 0.5) {
+        note.style.left = Math.random() * 92 + 2 + '%';
+      } else {
+        note.style.right = Math.random() * 92 + 2 + '%';
+      }
+      note.style.animationDelay = (Math.random() * 6) + 's';
+      note.style.fontSize = (1.5 + Math.random() * 1.5) + 'rem';
+      musicfield.appendChild(note);
+    }
+
+    // --- Chatbot Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const summonBotBtn = document.getElementById('summon-bot-btn');
+        const closeBotBtn = document.getElementById('close-bot-btn');
+        const chatbotWidget = document.getElementById('chatbot-widget');
+        const chatbotForm = document.getElementById('chatbot-form');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotBody = document.getElementById('chatbot-body');
+
+        let conversationHistory = [];
+        const systemPrompt = `You are 'Ibanez', an expert AI guitar tech from the Ibanez Custom Shop. Your tone is knowledgeable, cool, and direct, like a seasoned luthier. You are on a 404 error page. Your primary goal is to help lost users find what they are looking for on the Ibanez website. Key site sections are 'Home', 'New Models', 'Artist Gear', and 'Support & Manuals'. Keep your responses concise and helpful. Do not invent URLs; guide them with text. Use musician-centric slang where appropriate (e.g., 'dial in your search', 'get you back in the mix').`;
+
+        function initializeChat() {
+            const initialMessage = "Looks like that page got lost in the mix. I'm the Ibanez AI Tech. How can I help you get back on track?";
+            conversationHistory = [
+                { role: 'user', parts: [{ text: systemPrompt }] },
+                { role: 'model', parts: [{ text: initialMessage }] }
+            ];
+            addMessageToChat(initialMessage, 'bot');
+        }
+
+        summonBotBtn.addEventListener('click', () => {
+            chatbotWidget.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+            if (chatbotBody.children.length === 0) {
+                initializeChat();
+            }
+        });
+
+        closeBotBtn.addEventListener('click', () => {
+            chatbotWidget.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+        });
+
+        chatbotForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userMessage = chatbotInput.value.trim();
+            if (userMessage) {
+                addMessageToChat(userMessage, 'user');
+                conversationHistory.push({ role: 'user', parts: [{ text: userMessage }] });
+                chatbotInput.value = '';
+                getBotResponse();
+            }
+        });
+
+        function addMessageToChat(message, sender) {
+            const messageDiv = document.createElement('div');
+            const bubbleClasses = sender === 'user' ? 'bg-red-600 text-white self-end' : 'bg-[#3a3a3a] text-gray-200 self-start';
+            messageDiv.className = `p-3 rounded-lg max-w-[85%] ${bubbleClasses}`;
+            if (sender === 'bot' && message === '...') {
+                 messageDiv.innerHTML = `<div class="flex items-center gap-2"><span class="thinking-dot h-2 w-2 bg-gray-400 rounded-full"></span><span class="thinking-dot h-2 w-2 bg-gray-400 rounded-full"></span><span class="thinking-dot h-2 w-2 bg-gray-400 rounded-full"></span></div>`;
+            } else {
+                messageDiv.textContent = message;
+            }
+            chatbotBody.appendChild(messageDiv);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+
+        async function getBotResponse() {
+            addMessageToChat('...', 'bot');
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ history: conversationHistory })
+                });
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                const data = await response.json();
+                const botReply = data.reply;
+                chatbotBody.removeChild(chatbotBody.lastChild); 
+                addMessageToChat(botReply, 'bot');
+                conversationHistory.push({ role: 'model', parts: [{ text: botReply }] });
+            } catch (error) {
+                console.error("API call failed:", error);
+                chatbotBody.removeChild(chatbotBody.lastChild);
+                addMessageToChat("Sorry, seems there's some static on the line. Can't connect to the workshop right now. Please try again later.", 'bot');
+            }
+        }
+    });
+  </script>
+</body>
+</html>
